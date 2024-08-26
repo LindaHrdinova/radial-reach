@@ -15,8 +15,8 @@ public class RadialReach {
         // filling
         int filling = boardSizeA - 1;
 
-        if (boardSizeA % 2 == 0 || boardSizeA == 1) {
-            System.err.println("This is not an odd number.");
+        if (boardSizeA % 2 == 0 || boardSizeA <= 1) {
+            System.err.println("This is not an odd number bigger than 1.");
             return;
         } else {
             int[][] board = new int[boardSizeA][boardSizeA];
