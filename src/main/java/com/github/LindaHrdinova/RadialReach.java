@@ -12,6 +12,9 @@ public class RadialReach {
         System.out.println("Enter an odd number bigger then 1:");
         int boardSizeA = Integer.parseInt(scanner.nextLine());
 
+        // filling
+        int filling = boardSizeA - 1;
+
         if (boardSizeA % 2 == 0 || boardSizeA == 1) {
             System.err.println("This is not an odd number.");
             return;
@@ -20,8 +23,19 @@ public class RadialReach {
             System.out.println("The size is: " + boardSizeA);
             for (int i = 0; i < boardSizeA; i++) {
                 for (int j = 0; j < boardSizeA; j++) {
-                    board[i][j] = 0;
+                    board[i][j] = filling;
                     System.out.print(board[i][j] + "\t");
+
+
+                    if (j < board.length / 2) {
+                        filling--;
+                    } else {
+                        filling++;
+                    }
+                }
+
+                if (i < board.length / 2) {
+                    filling = filling - 2;
                 };
                 System.out.println();
             }
