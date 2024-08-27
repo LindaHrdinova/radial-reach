@@ -3,7 +3,11 @@ Draw a NxN board, where N an odd number, bigger than 1:
 - diagonal moves are not allowed
   
 43234
+
 32123
+
 21012
+
 32123
+
 43234
