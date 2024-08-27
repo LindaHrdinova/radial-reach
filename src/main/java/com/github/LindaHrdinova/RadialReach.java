@@ -1,40 +1,27 @@
 package com.github.LindaHrdinova;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class RadialReach {
-    private static void inputCheck(int input) {
+    private static int inputCheck(Scanner scanner, String prompt) {
+        System.out.println(prompt);
+        int input = Integer.parseInt(scanner.nextLine());
         if (input % 2 == 0 || input <= 1) {
             System.err.println("This is not an odd number bigger than 1.");
-            throw new IllegalArgumentException("This is not an odd number bigger than 1.");
-        };
+            System.exit(1);
+        }
+        return input;
     }
 
     public static void main(String[] args) {
-
         // Loading board size
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter an odd number bigger then 1, side A:");
-        int boardSizeA = Integer.parseInt(scanner.nextLine());
 
-        inputCheck(boardSizeA);
+        int boardSizeA = inputCheck(scanner, "Enter an odd number bigger than 1, height:");
+        int boardSizeB = inputCheck(scanner, "Enter an odd number bigger than 1, width:");
 
-        if (boardSizeA % 2 == 0 || boardSizeA <= 1) {
-            System.err.println("This is not an odd number bigger than 1.");
-            return;
-        }
-
-        System.out.println("Enter an odd number bigger then 1, side B:");
-        int boardSizeB = Integer.parseInt(scanner.nextLine());
-
-        if (boardSizeB % 2 == 0 || boardSizeB <= 1) {
-            System.err.println("This is not an odd number bigger than 1.");
-            return;
-        }
-
-        int filling = ((boardSizeA - 1) / 2 + (boardSizeB - 1) / 2);
+        // filling the board
+        int filling = ((boardSizeA + boardSizeB - 2) / 2);
 
         int[][] board = new int[boardSizeA][boardSizeB];
         System.out.println("The size is: " + boardSizeA + " x " + boardSizeB);
@@ -43,7 +30,7 @@ public class RadialReach {
                 board[i][j] = filling;
                 System.out.print(board[i][j] + "\t");
 
-
+                // filling the new line
                 if (j < boardSizeB / 2) {
                     filling--;
                 } else {
@@ -54,9 +41,10 @@ public class RadialReach {
             if (i < boardSizeA / 2) {
                 filling = filling - 2;
             }
-            ;
+            // new line of the board output
             System.out.println();
         }
-        return;
+        scanner.close();
+        System.exit(0);
     }
 }
