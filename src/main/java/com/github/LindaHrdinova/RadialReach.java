@@ -19,18 +19,19 @@ public class RadialReach {
         int boardHeight = inputCheck(scanner, "Enter an odd number bigger than 1, height:");
         int boardWidth = inputCheck(scanner, "Enter an odd number bigger than 1, width:");
 
+        System.out.println("The size is: " + boardHeight + " x " + boardWidth);
+
         int midRow = (boardHeight - 1) / 2;
-        int midColumn = (boardWidth - 1) / 2;;
+        int midColumn = (boardWidth - 1) / 2;
 
         int[][] board = new int[boardHeight][boardWidth];
-        System.out.println("The size is: " + boardHeight + " x " + boardWidth);
 
         for (int i = 0; i < boardHeight; i++) {
             for (int j = 0; j < boardWidth; j++) {
 
-                int rowDifferenc = Math.abs(midRow - i);
-                int columnDifferenc = Math.abs(midColumn - j);
-                int distance = rowDifferenc + columnDifferenc;
+                int rowDifference = Math.abs(midRow - i);
+                int columnDifference = Math.abs(midColumn - j);
+                int distance = rowDifference + columnDifference;
 
                 board[i][j] = distance;
                 System.out.print(board[i][j] + "\t");
@@ -39,6 +40,5 @@ public class RadialReach {
             System.out.println();
         }
         scanner.close();
-        System.exit(0);
     }
 }
