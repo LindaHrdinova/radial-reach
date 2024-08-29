@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class RadialReach {
     private static int inputCheck(Scanner scanner, String prompt) {
         System.out.println(prompt);
-        int input = Integer.parseInt(scanner.nextLine());
+        int input = scanner.nextInt();
         if (input % 2 == 0 || input <= 1) {
             System.err.println("This is not an odd number bigger than 1.");
             System.exit(1);
@@ -14,32 +14,26 @@ public class RadialReach {
     }
 
     public static void main(String[] args) {
-        // Loading board size
+        // loading board size
         Scanner scanner = new Scanner(System.in);
+        int boardHeight = inputCheck(scanner, "Enter an odd number bigger than 1, height:");
+        int boardWidth = inputCheck(scanner, "Enter an odd number bigger than 1, width:");
 
-        int boardSizeA = inputCheck(scanner, "Enter an odd number bigger than 1, height:");
-        int boardSizeB = inputCheck(scanner, "Enter an odd number bigger than 1, width:");
+        int midRow = (boardHeight - 1) / 2;
+        int midColumn = (boardWidth - 1) / 2;;
 
-        // filling the board
-        int filling = ((boardSizeA + boardSizeB - 2) / 2);
+        int[][] board = new int[boardHeight][boardWidth];
+        System.out.println("The size is: " + boardHeight + " x " + boardWidth);
 
-        int[][] board = new int[boardSizeA][boardSizeB];
-        System.out.println("The size is: " + boardSizeA + " x " + boardSizeB);
-        for (int i = 0; i < boardSizeA; i++) {
-            for (int j = 0; j < boardSizeB; j++) {
-                board[i][j] = filling;
+        for (int i = 0; i < boardHeight; i++) {
+            for (int j = 0; j < boardWidth; j++) {
+
+                int rowDifferenc = Math.abs(midRow - i);
+                int columnDifferenc = Math.abs(midColumn - j);
+                int distance = rowDifferenc + columnDifferenc;
+
+                board[i][j] = distance;
                 System.out.print(board[i][j] + "\t");
-
-                // filling the new line
-                if (j < boardSizeB / 2) {
-                    filling--;
-                } else {
-                    filling++;
-                }
-            }
-
-            if (i < boardSizeA / 2) {
-                filling = filling - 2;
             }
             // new line of the board output
             System.out.println();
